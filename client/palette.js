@@ -1,4 +1,3 @@
-if (Meteor.is_client) {
   Template.hello.greeting = function () {
     return "Welcome to palette.";
   };
@@ -10,10 +9,3 @@ if (Meteor.is_client) {
         console.log("You pressed the button");
     }
   };
-}
-
-if (Meteor.is_server) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}

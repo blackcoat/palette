@@ -1,5 +1,5 @@
 Template.hello.greeting = function () {
-	return "Welcome to palette.";
+	return "Welcome to palette, a two-player color-matching game.";
 };
 
 Template.hello.events = {

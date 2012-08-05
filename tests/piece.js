@@ -1,12 +1,6 @@
 /**
  * Spec-style unit tests for Pieces moved by Players in Palette
- *
- * Meteor 0.3.8 always tries to load the unit tests, and crashes
- * when doing so. To prevent that from happening, we will only
- * define the tests if Meteor is not running.
  */
-
-if (typeof(Meteor) === 'undefined') {
 
 require ( 'should' )
 
@@ -20,5 +14,3 @@ describe( 'Piece', function() {
 		it ( 'cannot move off of the Board')
 	})
 })
-
-} // end check for Meteor

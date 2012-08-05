@@ -1,12 +1,6 @@
 /**
  * Spec-style unit tests for Pieces moved by Players in Palette
- *
- * Meteor 0.3.8 always tries to load the unit tests, and crashes
- * when doing so. To prevent that from happening, we will only
- * define the tests if Meteor is not running.
  */
-
-if (typeof(Meteor) === 'undefined') {
 
 require ( 'should' )
 
@@ -17,5 +11,3 @@ describe( 'Game', function() {
 		it ( 'declare a Player the "winner" if they own more than 1/2 of the Squares on the Board' )
 	})
 })
-
-} // end check for Meteor

@@ -9,3 +9,10 @@ Template.hello.events = {
 		console.log("You pressed the button");
 	}
 };
+
+Template.board.squares = function () {
+	var board = new Board;
+	return jQuery.map( board.squares, function(n) {
+	  return n
+	})
+}

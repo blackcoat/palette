@@ -3,7 +3,7 @@
 </head>
 
 <body>
-  {{> hello}}
+  {{> board}}
 </body>
 
 <template name="hello">
@@ -11,3 +11,13 @@
   {{greeting}}
   <input type="button" value="Start a New Game" />
 </template>
+
+<template name="board">
+  <h1>Palette Board test</h1>
+  <div id="board">
+    {{#each squares}}
+      <div style="background-color: {{.}}"></div>
+    {{/each}}
+  </div>
+</template>
+  

@@ -1,1 +1,22 @@
-/* CSS declarations go here */
+/* ==========================================================================
+   The Board
+   ========================================================================== */
+
+/**
+ * Our Board on which the game is played is an N x N grid similar to a chess
+ * board (8x8 symmetric grid).
+ *
+ * Instead of using a <table>, our board is constructed by adding child <div>
+ * elements to the main #board. Each "square" on the board will be of uniform
+ * height and width.
+ */
+
+#board {
+  width: 850px;
+}
+
+#board div {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+}

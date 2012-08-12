@@ -27,14 +27,14 @@ var Board = (function (params) {
 	var init_squares = function (seed) {
 		// for now, just return a test set of squares
 		return [
-			['#00FFFF','#FF00FF','#FFFF00','#FFFF00','#FFFF00','#FFFF00','#FF00FF','#00FFFF'],
+			['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
 			['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
 			['#00FFFF','#FF00FF','#00FFFF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#00FFFF'],
 			['#00FFFF','#00FFFF','#0000FF','#FFFFFF','#000000','#00FFFF','#00FFFF','#00FFFF'],
 			['#00FFFF','#00FFFF','#00FFFF','#000000','#FFFFFF','#0000FF','#00FFFF','#00FFFF'],
 			['#00FFFF','#FF00FF','#00FFFF','#0000FF','#00FFFF','#00FFFF','#FF00FF','#00FFFF'],
 			['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
-			['#00FFFF','#FF00FF','#FFFF00','#FFFF00','#FFFF00','#FFFF00','#FF00FF','#00FFFF'],
+			['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
 		]
 	}
 	

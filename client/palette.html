@@ -15,9 +15,7 @@
 <template name="board">
   <h1>Palette Board test</h1>
   <div id="board">
-    {{#each squares}}
-      <div style="background-color: {{color}}" {{selected}}>{{occupant}}</div>
-    {{/each}}
+    {{#each squares}}<div style="background-color: {{color}}" {{selected}}>{{occupant}}</div>{{/each}}
   </div>
 </template>
   

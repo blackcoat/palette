@@ -11,7 +11,7 @@ Template.hello.events = {
 };
 
 Template.board.squares = function () {
-	var board = new Board;
+	var board = new Board
 	return jQuery.map( board.squares, function(n) {
 	  return n
 	})

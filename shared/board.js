@@ -5,7 +5,7 @@
 var Board = (function (params) {
 	
 	// Default values for our public members
-	var defaults = {}	
+	var defaults = {}
 	
 	// The public Board object to be returned by `new Board()`
 	var board = function (params) {

@@ -25,8 +25,6 @@ var Board = (function (params) {
 		for (var r = 0; r < ROWS; r++) {
 		  this.squares[r] = [];
 		  for (var c = 0; c < COLS; c++) {
-		    // @debug
-		    console.log('Initializing ' + r + ',' + c)
 		    this.squares[r][c] = new Square({ color: colors[r][c] })
 		  }
 		}

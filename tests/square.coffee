@@ -9,9 +9,9 @@
 describe 'Square', ->
   describe '#select', ->
     it 'marks the Square as "selected"', ->
-      s = new Square { selected: false }
-      s.select
-      s.should.be.true
+      s = new Square selected: false
+      s.select()
+      s.selected.should.be.true
       
   describe '#is_active', ->
   describe '#occupied_by', ->

@@ -13,6 +13,9 @@ class Square
     # Boolean. Indicates whether or not the Player taking a turn has
     # selected a Piece to move. Unoccupied Squares cannot be selected.
     @selected = params.selected or false
+  
+  select: ->
+    @selected = true
 
 
 # Export this code to our global namespace

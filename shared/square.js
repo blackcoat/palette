@@ -2,7 +2,7 @@
  * One of the Squares comprising the game's Board
  */
 
-var Square = (function (params) {
+(function (global) {
   // Default values for our public members
   var defaults = {
     /**
@@ -23,9 +23,16 @@ var Square = (function (params) {
     selected: false,
   }
   
-  // Merge our passed parameters and defaults into the class
-  var merged_params = jQuery.extend({}, defaults, params)
-  for(key in merged_params) {
-    this[key] = merged_params[key]
+  // The constructor for our object
+  var Square = function (params) {
+    // Merge our passed parameters and defaults into the class
+    var merged_params = jQuery.extend({}, defaults, params)
+    for( var key in merged_params ) {
+      this[key] = merged_params[key]
+    }
+    
+    return this
   }
-})
+  
+  global.Square = function ( params ) { return new Square( params ) }
+})(this)

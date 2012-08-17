@@ -1,6 +1,7 @@
+##
 # Small models shared between the Client and Server architecture
 
- 
+##
 # The collection of every Game instance. Each Game includes the members:
 # 
 # * board - the game board (Array of colors?)
@@ -12,7 +13,7 @@
 #
 Games = new Meteor.Collection 'games'
 
-
+##
 # The collection of every Player engaged in or searching for a game.
 # 
 # * Members include:

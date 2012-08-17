@@ -1,6 +1,5 @@
-###
-The game Board on which Palette is played
-###
+##
+# The game Board on which Palette is played
 
 class Board
   constructor: (params) ->

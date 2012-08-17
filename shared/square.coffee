@@ -1,6 +1,5 @@
-###
-One of the Squares comprising the game's Board
-###
+##
+# One of the Squares comprising the game's Board
 
 class Square
   constructor: (params) -> 

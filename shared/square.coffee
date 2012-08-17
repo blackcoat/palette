@@ -2,7 +2,7 @@
 # One of the Squares comprising the game's Board
 
 class Square
-  constructor: (params) -> 
+  constructor: (params = {}) -> 
     # String. And RGB color in hexidecimal format, with preceeding '#'
     @color = params.color or '#888888'
     

@@ -6,5 +6,5 @@ Template.board.squares = ->
   jQuery.map board.squares, (n) -> n
 
 Template.square.events = 'click' : ->
-  console.log("You clicked on:")
-  console.log(this)
+  console.log "You clicked on:"
+  console.log this

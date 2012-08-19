@@ -13,4 +13,6 @@ Template.square.events = 'click' : (event) ->
 # every time the application loads
 Meteor.startup ->
   console.log 'starting Palette'
-  Session.set 'game', new Game
+  params =
+    players: [{name: 'Player 1'}, {name: 'Player 2'}]
+  Session.set 'game', new Game params

@@ -4,3 +4,4 @@
 class Game
   constructor: (params={}) ->
     @board = new Board
+    @players = params.players or []

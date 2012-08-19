@@ -18,12 +18,6 @@ class Square
     @selected = true
 
 
-# Export this code to our global namespace
-# This is needed when running Mocha
-#
-# Note that a simple `root = exports ? window`
-# will cause Meteor to crash. We need this
-# long-hand format for the conditional.
-root = exports if exports?
-root?= window if window?
-root.Square = Square
+# Export our class to Node.js when running
+# other modules, e.g. our Mocha tests
+exports.Square = Square unless Meteor?

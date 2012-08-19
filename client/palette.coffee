@@ -16,4 +16,6 @@ Meteor.startup ->
   console.log 'starting Palette'
   params =
     players: [{name: 'Player 1'}, {name: 'Player 2'}]
-  Session.set 'game', new Game params
+  game = new Game params
+  game.start()
+  Session.set 'game', game

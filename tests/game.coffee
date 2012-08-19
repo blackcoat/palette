@@ -2,7 +2,7 @@
 # Spec-style unit tests for Pieces moved by Players in Palette
 
 require 'should'
-require '../shared/models/game'
+{Game} = require '../shared/models/game'
 
 describe 'Game', ->
   describe '#start', ->

@@ -22,3 +22,8 @@
   margin: 1px;
   position: relative;
 }
+
+#board div:hover {
+  outline: 5px solid rgba(150,150,150,.83);
+  z-index: 100;
+}

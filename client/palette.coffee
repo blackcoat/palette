@@ -3,7 +3,8 @@ Template.hello.greeting = ->
 
 Template.board.squares = ->
   game = Session.get 'game'
-  jQuery.map game.board.squares, (n) -> n
+  if game?
+    jQuery.map game.board.squares, (n) -> n
 
 Template.square.events = 'click' : (event) ->
   console.log "You clicked on:"

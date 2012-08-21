@@ -20,5 +20,5 @@
 </template>
 
 <template name="square">
-<div style="background-color: {{color}}" {{selected}}>{{occupant}}</div>
+<div style="background-color: {{color}}" {{#if selected}}class="selected"{{/if}}>{{occupant}}</div>
 </template>

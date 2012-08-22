@@ -2,13 +2,13 @@ Template.hello.greeting = ->
   "Welcome to palette, a two-player color-matching game."
 
 Template.board.squares = ->
-  game = Session.get 'game'
-  if game?
-    jQuery.map game.board.squares, (n) -> n
+  squares = Squares.find()
+  squares.map (n) -> n
 
 Template.square.events = 'click' : (event) ->
   console.log "You clicked on:"
-  console.log this
+  console.log @
+  Squares.update @._id, {$set: {selected: true}}
 
 # While prototyping, start up a new *local* game 
 # every time the application loads
@@ -16,6 +16,4 @@ Meteor.startup ->
   console.log 'starting Palette'
   params =
     players: [{name: 'Player 1', color: 'white'}, {name: 'Player 2', color: 'black'}]
-  game = new Game params
-  game.start()
-  Session.set 'game', game
+  Meteor.call 'init_board'

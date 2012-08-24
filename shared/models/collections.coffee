@@ -27,10 +27,10 @@ Squares = new Meteor.Collection 'squares'
 Meteor.methods
   init_board: ->
     board = new Board
-    #directly from the Board constructor
-    size = [0..7]
-    colors = board.randomize_colors()
-    Squares.insert new Square color: colors[r][c] for c in size for r in size
-    console.log "The Test works!!"
-  
-  
+    count = Squares.find({}).count()
+    console.log 'Square count: ' + count
+    unless count
+      #directly from the Board constructor
+      size = [0..7]
+      colors = board.randomize_colors()
+      Squares.insert new Square color: colors[r][c] for c in size for r in size

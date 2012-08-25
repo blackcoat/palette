@@ -3,6 +3,10 @@
 
 class Square
   constructor: (params = {}) -> 
+    # MongoDB ID. String. A reference to the Game board containing
+    # this Square
+    @game_id = params.game_id or null
+    
     # String. And RGB color in hexidecimal format, with preceeding '#'
     @color = params.color or '#888888'
     

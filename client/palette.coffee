@@ -1,6 +1,3 @@
-Template.hello.greeting = ->
-  "Welcome to palette, a two-player color-matching game."
-
 Template.board.squares = ->
   squares = Squares.find()
   squares.map (n) -> n

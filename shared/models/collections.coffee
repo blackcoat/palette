@@ -25,12 +25,14 @@ Players = new Meteor.Collection 'players'
 Squares = new Meteor.Collection 'squares'
 
 Meteor.methods
-  init_board: ->
-    board = new Board
-    count = Squares.find({}).count()
-    console.log 'Square count: ' + count
-    unless count
+  init_game: ->
+    game_id = Session.get 'current_game_id'
+    unless game_id?
+      game_id = Games.insert name:'Test game'
+      Session.set 'current_game_id', game_id
+      
       #directly from the Board constructor
       size = [0..7]
+      board = new Board
       colors = board.randomize_colors()
-      Squares.insert new Square color: colors[r][c] for c in size for r in size
+      Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size

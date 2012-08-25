@@ -25,14 +25,28 @@ Players = new Meteor.Collection 'players'
 Squares = new Meteor.Collection 'squares'
 
 Meteor.methods
+  # For testing purposes, automatically starts
+  # a new game and initializes the board
   init_game: ->
     game_id = Session.get 'current_game_id'
     unless game_id?
       game_id = Games.insert name:'Test game'
       Session.set 'current_game_id', game_id
       
-      #directly from the Board constructor
       size = [0..7]
-      board = new Board
-      colors = board.randomize_colors()
+      colors = Meteor.call 'randomize_colors'
       Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size
+  
+  randomize_colors: (seed) ->
+    # for now, just return a fixed patten of colors until
+    # we implement a color-randomization algorithm
+    [ ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
+      ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
+      ['#00FFFF','#FF00FF','#00FFFF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#00FFFF'],
+      ['#00FFFF','#00FFFF','#0000FF','#FFFFFF','#000000','#00FFFF','#00FFFF','#00FFFF'],
+      ['#00FFFF','#00FFFF','#00FFFF','#000000','#FFFFFF','#0000FF','#00FFFF','#00FFFF'],
+      ['#00FFFF','#FF00FF','#00FFFF','#0000FF','#00FFFF','#00FFFF','#FF00FF','#00FFFF'],
+      ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
+      ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
+    ]
+  

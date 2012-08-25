@@ -13,6 +13,12 @@ class Square
     # Boolean. Indicates whether or not the Player taking a turn has
     # selected a Piece to move. Unoccupied Squares cannot be selected.
     @selected = params.selected or false
+    
+    # Integer. The row of the game board where the Square is located
+    @row = params.row ? -1
+    
+    # Integer. The column of the game board where the Square is located
+    @col = params.col ? -1
   
   select: ->
     @selected = true

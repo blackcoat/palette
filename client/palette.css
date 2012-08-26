@@ -12,13 +12,14 @@
  */
 
 #board {
-  width: 850px;
+  margin-top: 60px;
+  width: 700px;
 }
 
 #board div {
   display: inline-block;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   margin: 1px;
   position: relative;
 }

@@ -28,14 +28,10 @@ Meteor.methods
   # For testing purposes, automatically starts
   # a new game and initializes the board
   init_game: ->
-    game_id = Session.get 'current_game_id'
-    unless game_id?
-      game_id = Games.insert name:'Test game'
-      Session.set 'current_game_id', game_id
-      
-      size = [0..7]
-      colors = Meteor.call 'randomize_colors'
-      Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size
+    game_id = Games.insert name:'Test game'
+    size = [0..7]
+    colors = Meteor.call 'randomize_colors'
+    Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size
   
   randomize_colors: (seed) ->
     # for now, just return a fixed patten of colors until

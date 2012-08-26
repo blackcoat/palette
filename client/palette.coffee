@@ -7,6 +7,10 @@ Template.square.events = 'click' : (event) ->
   console.log @
   Squares.update @._id, {$set: {selected: true}}
 
+Template.games.games = ->
+  games = Games.find()
+
+
 # While prototyping, start up a new *local* game 
 # every time the application loads
 Meteor.startup ->

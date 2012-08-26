@@ -3,11 +3,19 @@
 </head>
 
 <body>
-  {{> board}}
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <h1 class="brand">Palette</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    {{> board}}
+  </div>
 </body>
 
 <template name="board">
-  <h1>Palette Board test</h1>
   <div id="board">
     {{#each squares}}{{> square}}{{/each}}
   </div>

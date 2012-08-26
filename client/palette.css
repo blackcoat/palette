@@ -1,4 +1,21 @@
 /* ==========================================================================
+   Basic Setup
+   ========================================================================== */
+
+/**
+ * Our Board on which the game is played is an N x N grid similar to a chess
+ * board (8x8 symmetric grid).
+ *
+ * Instead of using a <table>, our board is constructed by adding child <div>
+ * elements to the main #board. Each "square" on the board will be of uniform
+ * height and width.
+ */
+body {
+  font-size: 20px;
+}
+
+
+/* ==========================================================================
    The Board
    ========================================================================== */
 
@@ -33,3 +50,14 @@
   outline: 5px solid rgba(200,0,200,.83);
   z-index: 10;
 }
+
+
+/* ==========================================================================
+   The Navbar
+   ========================================================================== */
+
+/**
+ * Our Navbar uses the classes provided by Twitter Bootstrap, but there are a
+ * few things that we want to customize for our own aesthetic.
+ */
+.navbar .brand { font-size: 140%; }

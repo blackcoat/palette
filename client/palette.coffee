@@ -1,3 +1,6 @@
+Template.board.id = ->
+  Session.get 'game_id'
+
 Template.board.squares = ->
   squares = Squares.find()
   squares.map (n) -> n

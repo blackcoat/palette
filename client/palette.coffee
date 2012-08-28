@@ -13,6 +13,11 @@ Template.square.events = 'click' : (event) ->
 Template.games.games = ->
   games = Games.find()
 
+Template.games.events = 
+  'click #clear-all-games' : (event) ->
+    Games.remove {}
+    Squares.remove {}
+
 
 # While prototyping, start up a new *local* game 
 # every time the application loads

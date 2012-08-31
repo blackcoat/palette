@@ -23,6 +23,4 @@ Template.games.events =
 # every time the application loads
 Meteor.startup ->
   console.log 'starting Palette'
-  params =
-    players: [{name: 'Player 1', color: 'white'}, {name: 'Player 2', color: 'black'}]
   Meteor.call 'init_game'

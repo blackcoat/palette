@@ -5,7 +5,7 @@ Template.board.squares = ->
   squares = Squares.find()
   squares.map (n) -> n
 
-Template.square.events = 'click' : (event) ->
+Template.square.events 'click' : (event) ->
   console.log "You clicked on:"
   console.log @
   Squares.update @._id, {$set: {selected: true}}
@@ -13,8 +13,7 @@ Template.square.events = 'click' : (event) ->
 Template.games.games = ->
   games = Games.find()
 
-Template.games.events = 
-  'click #clear-all-games' : (event) ->
+Template.games.events 'click #clear-all-games' : (event) ->
     Games.remove {}
     Squares.remove {}
 

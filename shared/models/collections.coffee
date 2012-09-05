@@ -24,6 +24,13 @@ Players = new Meteor.Collection 'players'
 
 Squares = new Meteor.Collection 'squares'
 
+##
+# @todo add collections for:
+# * all unfinished games in which the Player is involved
+# * finished games played by the Player
+# * friends
+# 
+
 Meteor.methods
   # For testing purposes, automatically starts
   # a new game and initializes the board

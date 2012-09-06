@@ -3,7 +3,8 @@
 
 class Game
   constructor: (params={}) ->
-    @board = new Board
+    size = [0..7]
+    @squares = ({} for c in size for r in size)
     @players = params.players or []
   
   start: ->
@@ -15,16 +16,16 @@ class Game
       
   init_pieces: ->
     p1_rook = new Piece 'rook', @players[0]
-    @board.squares[3][3].occupant = p1_rook
+    @squares[3][3].occupant = p1_rook
     
     p1_bishop = new Piece 'bishop', @players[0]
-    @board.squares[4][4].occupant = p1_bishop
+    @squares[4][4].occupant = p1_bishop
     
     p2_rook = new Piece 'rook', @players[1]
-    @board.squares[3][4].occupant = p2_rook
+    @squares[3][4].occupant = p2_rook
     
     p2_bishop = new Piece 'bishop', @players[1]
-    @board.squares[4][3].occupant = p2_bishop
+    @squares[4][3].occupant = p2_bishop
 
 
 # Export our class to Node.js when running

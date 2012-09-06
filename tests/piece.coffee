@@ -1,6 +1,9 @@
 ##
 # Spec-style unit tests for Pieces moved by Players in Palette
 
+# Need to use Coffeescript's destructuring to reference
+# the object bound in the returned scope
+# http://coffeescript.org/#destructuring
 {Piece} = require '../shared/models/piece'
 
 describe 'Piece', ->

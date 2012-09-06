@@ -21,5 +21,5 @@ Template.games.events 'click #clear-all-games' : (event) ->
 # While prototyping, start up a new *local* game 
 # every time the application loads
 Meteor.startup ->
-  console.log 'starting Palette'
+  console.log '**Starting Palette @ ' + new Date() + '**'
   Meteor.call 'init_game'

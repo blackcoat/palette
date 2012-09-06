@@ -30,13 +30,13 @@ body {
  */
 
 #board {
-  width: 700px;
+  width: 600px;
 }
 
 #board div {
   display: inline-block;
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   margin: 1px;
   position: relative;
 }

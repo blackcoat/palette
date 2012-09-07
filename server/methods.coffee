@@ -28,10 +28,10 @@ Meteor.methods
     Squares.update {game_id: game_id, row: 3, col: 3}, {$set: {occupant: p1_rook}}
     
     p1_bishop = new Piece 'bishop'
-#    @squares[4][4].occupant = p1_bishop
+    Squares.update {game_id: game_id, row: 4, col: 4}, {$set: {occupant: p1_bishop}}
     
     p2_rook = new Piece 'rook'
-#    @squares[3][4].occupant = p2_rook
+    Squares.update {game_id: game_id, row: 3, col: 4}, {$set: {occupant: p2_rook}}
     
     p2_bishop = new Piece 'bishop'
-#    @squares[4][3].occupant = p2_bishop
+    Squares.update {game_id: game_id, row: 4, col: 3}, {$set: {occupant: p2_bishop}}

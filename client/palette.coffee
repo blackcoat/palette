@@ -2,7 +2,7 @@ Template.board.id = ->
   Session.get 'game_id'
 
 Template.board.squares = ->
-  squares = Squares.find({game_id: Session.get 'game_id'})
+  squares = Squares.find {game_id: Session.get 'game_id'}, {sort: ['row', 'col']}
   squares.map (n) -> n
 
 Template.square.events 'click' : (event) ->

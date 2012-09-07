@@ -22,4 +22,6 @@ Template.games.events 'click #clear-all-games' : (event) ->
 # every time the application loads
 Meteor.startup ->
   console.log '**Starting Palette @ ' + new Date() + '**'
-  Meteor.call 'init_game'
+  unless Session.get('game_id')?
+    Meteor.call 'init_game', (error, game_id) ->
+      Session.set 'game_id', game_id

@@ -35,10 +35,14 @@ body {
 
 #board div {
   display: inline-block;
+  font-size: 40pt;
+  line-height: 70px;
   height: 70px;
   width: 70px;
   margin: 1px;
   position: relative;
+  text-align: center;
+  vertical-align: top;
 }
 
 #board div:hover {

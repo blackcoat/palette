@@ -25,7 +25,9 @@
 </template>
 
 <template name="square">
-<div class="square {{#if selected}}selected{{/if}}" style="background-color: {{color}}">{{occupant}}</div>
+<div class="square {{#if selected}}selected{{/if}}" 
+  data-row="{{row}}" data-col="{{col}}"
+  style="background-color: {{color}}">{{occupant}}</div>
 </template>
 
 <template name="games">

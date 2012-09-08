@@ -33,6 +33,15 @@ body {
   width: 600px;
 }
 
+#board-overlay {
+  background-color: rgba( 100, 100, 100, .8 );
+  display: none;
+  height: 575px;
+  position: absolute;
+  width: 575px;
+  z-index: 5;
+}
+
 .square {
   display: inline-block;
   font-size: 40pt;
@@ -43,6 +52,7 @@ body {
   position: relative;
   text-align: center;
   vertical-align: top;
+  z-index: 1;
 }
 
 .square:hover {

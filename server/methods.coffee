@@ -24,14 +24,14 @@ Meteor.methods
     ]
   
   init_pieces: (game_id) ->
-    p1_rook = new Piece 'rook'
+    p1_rook = new Piece 'rook', 'white'
     Squares.update {game_id: game_id, row: 3, col: 3}, {$set: {occupant: p1_rook}}
     
-    p1_bishop = new Piece 'bishop'
+    p1_bishop = new Piece 'bishop', 'white'
     Squares.update {game_id: game_id, row: 4, col: 4}, {$set: {occupant: p1_bishop}}
     
-    p2_rook = new Piece 'rook'
+    p2_rook = new Piece 'rook', 'black'
     Squares.update {game_id: game_id, row: 3, col: 4}, {$set: {occupant: p2_rook}}
     
-    p2_bishop = new Piece 'bishop'
+    p2_bishop = new Piece 'bishop', 'black'
     Squares.update {game_id: game_id, row: 4, col: 3}, {$set: {occupant: p2_bishop}}

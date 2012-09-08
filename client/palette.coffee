@@ -11,13 +11,15 @@ Template.square.occupant = ->
   # We'll start with the white pieces for now.
   # http://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
   symbol = 
-    bishop: '♝'
-    rook: '♜'
-#    bishop: '♗'
-#    rook: '♖'
+    bishop:
+      white: '♗'
+      black: '♝'
+    rook: 
+      white: '♖'
+      black: '♜'
   
   if @.occupant?
-    symbol[@.occupant.type]
+    symbol[@.occupant.type][@.occupant.owner]
 
 ##
 # Choose a piece on the board, then choose the

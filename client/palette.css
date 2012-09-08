@@ -33,7 +33,7 @@ body {
   width: 600px;
 }
 
-#board div {
+.square {
   display: inline-block;
   font-size: 40pt;
   line-height: 70px;
@@ -45,12 +45,12 @@ body {
   vertical-align: top;
 }
 
-#board div:hover {
+.square:hover {
   outline: 5px solid rgba(150,150,150,.83);
   z-index: 100;
 }
 
-#board div.selected {
+.square.selected {
   outline: 5px solid rgba(200,0,200,.83);
   z-index: 10;
 }

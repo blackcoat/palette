@@ -33,6 +33,14 @@ body {
   width: 600px;
 }
 
+/**
+ * This overlay masks untargettable Squares on the board when moving a Piece, 
+ * helping prevent illegal movement choices on the part of the player.
+ * 
+ * The board-overlay should be layered above most Squares on the board, but below
+ * any suitable destinations. This element will only appear when a player is
+ * choosing where to move a Piece.
+ */
 #board-overlay {
   background-color: rgba( 100, 100, 100, .8 );
   display: none;

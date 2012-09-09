@@ -49,6 +49,10 @@ body {
   z-index: 5;
 }
 
+/**
+ * The game Board is composed of many Squares, similar to an 8x8 chess board.
+ * Each Piece on the Board is rendered in the center of a Square
+ */
 .square {
   display: inline-block;
   font-size: 40pt;

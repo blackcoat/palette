@@ -70,5 +70,20 @@ Meteor.startup ->
 
 Meteor.methods
   show_destinations: (origin) ->
-    $('.square[data-row=' + origin.row + '], .square[data-col=' + origin.col + ']').css({'z-index': 100})
+    if origin.occupant.type is 'rook'
+      destinations = $('.square[data-row=' + origin.row + '], .square[data-col=' + origin.col + ']')
+    else 
+      # Keep a list of which directions we go in away from the origin
+      # If we encounter a Square of the opposite color, stop moving in that direction
+      # Similarly, don't bother looking in that direction anymore if we're going
+      # beyond the boundaries of the board
+      directions = 
+        nw: {row:-1, col:-1}
+        ne: {row:-1, col: 1}
+        se: {row: 1, col: 1}
+        sw: {row: 1, col:-1}
+      size = [0..7]
+      selectors = [].concat.apply([], ('.square[data-row=' + (origin.row + offset * vector.row) + '][data-col=' + (origin.col + offset * vector.col) + ']' for offset in size for direction,vector of directions))
+      destinations = $(selectors.join ',')
+    destinations.css({'z-index': 100})
     $('#board-overlay').fadeIn('fast')

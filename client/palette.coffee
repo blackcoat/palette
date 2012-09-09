@@ -42,6 +42,7 @@ Template.square.events 'click' : (event) ->
     if @.occupant?
       Session.set 'selected_square', @
       $('#' + @._id).addClass('selected')
+      Meteor.call 'show_destinations', @
   else
     origin = Session.get 'selected_square'
     if not @.occupant?
@@ -66,3 +67,8 @@ Meteor.startup ->
   unless Session.get('game_id')?
     Meteor.call 'init_game', (error, game_id) ->
       Session.set 'game_id', game_id
+
+Meteor.methods
+  show_destinations: (origin) ->
+    $('.square[data-row=' + origin.row + '], .square[data-col=' + origin.col + ']').css({'z-index': 100})
+    $('#board-overlay').fadeIn('fast')

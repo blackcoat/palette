@@ -41,14 +41,14 @@ Template.square.events 'click' : (event) ->
   if not (Session.get 'selected_square')?
     if @.occupant?
       Session.set 'selected_square', @
-      Squares.update @._id, {$set: {selected: true}}
+      $('#' + @._id).addClass('selected')
   else
     origin = Session.get 'selected_square'
     if not @.occupant?
       piece_to_move = origin.occupant
       Squares.update origin._id, {$set: {occupant: null}}
       Squares.update @._id, {$set: {occupant: piece_to_move}}
-    Squares.update origin._id, {$set: {selected: false}}
+    $('#' + origin._id).removeClass('selected')
     Session.set 'selected_square', null
 
 Template.games.games = ->

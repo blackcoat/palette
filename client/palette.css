@@ -28,7 +28,6 @@ body {
  * elements to the main #board. Each "square" on the board will be of uniform
  * height and width.
  */
-
 #board {
   width: 600px;
 }

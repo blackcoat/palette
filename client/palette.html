@@ -25,7 +25,7 @@
 </template>
 
 <template name="square">
-<div class="square{{#if selected}} selected{{/if}}" 
+<div id="{{_id}}" class="square"
   data-row="{{row}}" data-col="{{col}}"
   style="background-color: {{color}}">{{occupant}}</div>
 </template>

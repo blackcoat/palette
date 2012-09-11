@@ -91,11 +91,14 @@ show_destinations = (origin) ->
   # * a Square is occupied by another Piece
   # * we encounter a Square of the opposite color
   # * we would be moving beyond the boundaries of the board
+  
+  player_colors = ['white', 'black']
+  
   selectors = []
   for direction,vector of directions
     offset = 0
     square = origin
-    while square? and (square is origin or not square.occupant?)
+    while square? and (square is origin or not square.occupant?) and ($.xcolor.nearestname(square.color) not in player_colors or $.xcolor.nearestname(square.color) is origin.occupant.owner)
       selectors.push '.square[data-row=' + (origin.row + offset * vector.row) + '][data-col=' + (origin.col + offset * vector.col) + ']'
       offset += 1
       square = Squares.findOne {row: (origin.row + offset * vector.row), col: (origin.col + offset * vector.col), game_id: origin.game_id}

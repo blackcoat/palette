@@ -70,28 +70,36 @@ Meteor.startup ->
       Session.set 'game_id', game_id
 
 show_destinations = (origin) ->
+  # Keep a list of which directions we go in away from the origin
+  # Each direction has a vector that we will scale to track
+  # how far away we go from the origin of our move.
   if origin.occupant.type is 'rook'
-    destinations = $('.square[data-row=' + origin.row + '], .square[data-col=' + origin.col + ']')
+    directions = 
+      n: {row:-1, col: 0}
+      s: {row: 1, col: 0}
+      e: {row: 0, col: 1}
+      w: {row: 0, col:-1}
   else 
-    # Keep a list of which directions we go in away from the origin
-    # If we encounter a Square of the opposite color, stop moving in that direction
-    # Similarly, don't bother looking in that direction anymore if we're going
-    # beyond the boundaries of the board
     directions = 
       nw: {row:-1, col:-1}
       ne: {row:-1, col: 1}
       se: {row: 1, col: 1}
       sw: {row: 1, col:-1}
-    size = [0..7]
-    selectors = []
-    for direction,vector of directions
-      offset = 0
-      square = origin
-      while square? and (square is origin or not square.occupant?)
-        selectors.push '.square[data-row=' + (origin.row + offset * vector.row) + '][data-col=' + (origin.col + offset * vector.col) + ']'
-        offset += 1
-        square = Squares.findOne {row: (origin.row + offset * vector.row), col: (origin.col + offset * vector.col), game_id: origin.game_id}
-    destinations = $(selectors.join ',')
+  
+  # Search for how far we can move a piece in each direction.
+  # Stop searching for destinations in a direction if...
+  # * a Square is occupied by another Piece
+  # * we encounter a Square of the opposite color
+  # * we would be moving beyond the boundaries of the board
+  selectors = []
+  for direction,vector of directions
+    offset = 0
+    square = origin
+    while square? and (square is origin or not square.occupant?)
+      selectors.push '.square[data-row=' + (origin.row + offset * vector.row) + '][data-col=' + (origin.col + offset * vector.col) + ']'
+      offset += 1
+      square = Squares.findOne {row: (origin.row + offset * vector.row), col: (origin.col + offset * vector.col), game_id: origin.game_id}
+  destinations = $(selectors.join ',')
   destinations.css({'z-index': 100})
   $('#board-overlay').fadeIn('fast')
   

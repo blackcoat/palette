@@ -49,6 +49,7 @@ Template.square.events 'click' : (event) ->
       piece_to_move = origin.occupant
       Squares.update origin._id, {$set: {occupant: null}}
       Squares.update @._id, {$set: {occupant: piece_to_move}}
+      update_colors origin, @
     $('#' + origin._id).removeClass('selected')
     Session.set 'selected_square', null
 
@@ -87,3 +88,26 @@ Meteor.methods
       destinations = $(selectors.join ',')
     destinations.css({'z-index': 100})
     $('#board-overlay').fadeIn('fast')
+  
+
+update_colors = (origin, destination) ->
+  piece = origin.occupant
+  # If you are playing white or black, you can't use your desired
+  # end color as a new painting_color. Otherwise, the game would
+  # be far too easy. "I'll add white to *everything*"
+  painting_color = origin.color unless $.xcolor.nearestname(origin.color) is piece.owner
+  
+  # Our `for` loop doesn't run diagonally... yet. For now, just run
+  # the color-updating code when moving rooks.
+  if piece.type is 'rook'
+    for r in [origin.row..destination.row]
+      for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
+        square = Squares.findOne {row: r, col: c, game_id: origin.game_id}
+        if painting_color?
+          square.color = $.xcolor.additive(square.color, painting_color).toString()
+          Squares.update square._id, {$set: {color: square.color}}
+        else
+          # Pick up a new painting color if we don't have one already,
+          # but we can't use our desired outcome color (white/black) as
+          # a painting color
+          painting_color = square.color unless $.xcolor.nearestname(square.color) is piece.owner

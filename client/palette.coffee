@@ -97,6 +97,9 @@ update_colors = (origin, destination) ->
   # be far too easy. "I'll add white to *everything*"
   painting_color = origin.color unless $.xcolor.nearestname(origin.color) is piece.owner
   
+  # Determine how our colors will be combined.
+  mode = if piece.owner is 'white' then 'additive' else 'subtractive'
+  
   # Our `for` loop doesn't run diagonally... yet. For now, just run
   # the color-updating code when moving rooks.
   if piece.type is 'rook'
@@ -104,7 +107,7 @@ update_colors = (origin, destination) ->
       for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
         square = Squares.findOne {row: r, col: c, game_id: origin.game_id}
         if painting_color?
-          square.color = $.xcolor.additive(square.color, painting_color).toString()
+          square.color = $.xcolor[mode](square.color, painting_color).toString()
           Squares.update square._id, {$set: {color: square.color}}
         else
           # Pick up a new painting color if we don't have one already,

@@ -112,7 +112,8 @@ update_colors = (origin, destination) ->
   # If you are playing white or black, you can't use your desired
   # end color as a new painting_color. Otherwise, the game would
   # be far too easy. "I'll add white to *everything*"
-  painting_color = origin.color unless $.xcolor.nearestname(origin.color) is piece.owner
+  player_colors = ['white', 'black']
+  painting_color = origin.color unless $.xcolor.nearestname(origin.color) in player_colors
   
   # Determine how our colors will be combined.
   mode = if piece.owner is 'white' then 'additive' else 'subtractive'
@@ -123,11 +124,11 @@ update_colors = (origin, destination) ->
     for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
       if piece.type is 'rook' or (piece.type is 'bishop' and Math.abs(origin.row - r) is Math.abs(origin.col - c))
         square = Squares.findOne {row: r, col: c, game_id: origin.game_id}
-        if painting_color?
+        if painting_color? and $.xcolor.nearestname(square.color) not in player_colors
           square.color = $.xcolor[mode](square.color, painting_color).toString()
           Squares.update square._id, {$set: {color: square.color}}
         else
           # Pick up a new painting color if we don't have one already,
           # but we can't use our desired outcome color (white/black) as
           # a painting color
-          painting_color = square.color unless $.xcolor.nearestname(square.color) is piece.owner
+          painting_color = square.color unless $.xcolor.nearestname(square.color) in player_colors

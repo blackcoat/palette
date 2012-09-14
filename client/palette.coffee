@@ -119,9 +119,9 @@ update_colors = (origin, destination) ->
   
   # Our `for` loop doesn't run diagonally... yet. For now, just run
   # the color-updating code when moving rooks.
-  if piece.type is 'rook'
-    for r in [origin.row..destination.row]
-      for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
+  for r in [origin.row..destination.row]
+    for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
+      if piece.type is 'rook' or (piece.type is 'bishop' and Math.abs(origin.row - r) is Math.abs(origin.col - c))
         square = Squares.findOne {row: r, col: c, game_id: origin.game_id}
         if painting_color?
           square.color = $.xcolor[mode](square.color, painting_color).toString()

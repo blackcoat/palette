@@ -5,6 +5,9 @@ Template.board.squares = ->
   squares = Squares.find {game_id: Session.get 'game_id'}, {sort: ['row', 'col']}
   squares.map (n) -> n
 
+Template.board.events 'click #board-overlay' : (event) ->
+  UI.clear_selection()
+
 Template.square.occupant = ->
   # For the moment, use the appropriate
   # Unicode chess symbol for our pieces.

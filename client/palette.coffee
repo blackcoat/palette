@@ -74,7 +74,7 @@ UI = {}
 UI.clear_selection = ->
   $('.selected').removeClass('selected')
   $('#board-overlay').fadeOut('fast')
-  $('.square').css('z-index', 1)
+  $('.square').removeClass('destination')
   Session.set 'selected_square', null
 
 
@@ -120,7 +120,7 @@ show_destinations = (origin) ->
       offset += 1
       square = Squares.findOne {row: (origin.row + offset * vector.row), col: (origin.col + offset * vector.col), game_id: origin.game_id}
   destinations = $(selectors.join ',')
-  destinations.css({'z-index': 100})
+  destinations.not('.selected').addClass('destination')
   $('#board-overlay').fadeIn('fast')
   
 

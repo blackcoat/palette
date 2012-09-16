@@ -73,6 +73,10 @@ body {
 
 .square.selected {
   outline: 5px solid rgba(200,0,200,.83);
+  z-index: 1000;
+}
+
+.square.destination {
   z-index: 10;
 }
 

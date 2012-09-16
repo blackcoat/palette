@@ -50,11 +50,7 @@ Template.square.events 'click' : (event) ->
       Squares.update origin._id, {$set: {occupant: null}}
       Squares.update @._id, {$set: {occupant: piece_to_move}}
       update_colors origin, @
-    # Clear selection...
-    $('#' + origin._id).removeClass('selected')
-    $('#board-overlay').fadeOut('fast')
-    $('.square').css('z-index', 1)
-    Session.set 'selected_square', null
+    UI.clear_selection()
 
 Template.games.games = ->
   games = Games.find()
@@ -62,6 +58,21 @@ Template.games.games = ->
 Template.games.events 'click #clear-all-games' : (event) ->
     Games.remove {}
     Squares.remove {}
+
+
+##
+# User Interface Behaviors
+# 
+# Gameplay animations and UI behaviors belong to more than
+# just one template. For now, we're going to namespace all
+# such items in the UI object
+UI = {}
+
+UI.clear_selection = ->
+  $('.selected').removeClass('selected')
+  $('#board-overlay').fadeOut('fast')
+  $('.square').css('z-index', 1)
+  Session.set 'selected_square', null
 
 
 # While prototyping, start up a new *local* game 

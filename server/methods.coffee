@@ -15,10 +15,10 @@ Meteor.methods
     # we implement a color-randomization algorithm
     [ ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
       ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
-      ['#00FFFF','#FF00FF','#00FFFF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#00FFFF'],
-      ['#00FFFF','#00FFFF','#0000FF','#FFFFFF','#000000','#00FFFF','#00FFFF','#00FFFF'],
-      ['#00FFFF','#00FFFF','#00FFFF','#000000','#FFFFFF','#0000FF','#00FFFF','#00FFFF'],
-      ['#00FFFF','#FF00FF','#00FFFF','#0000FF','#00FFFF','#00FFFF','#FF00FF','#00FFFF'],
+      ['#00FFFF','#FF00FF','#7F00FF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#7F00FF'],
+      ['#00FF7F','#00FF7F','#0000FF','#FFFFFF','#000000','#007FFF','#007FFF','#00FFFF'],
+      ['#00FFFF','#007FFF','#007FFF','#000000','#FFFFFF','#0000FF','#00FF7F','#00FF7F'],
+      ['#7FFF00','#FF00FF','#00FFFF','#0000FF','#00FFFF','#7F00FF','#FF00FF','#00FFFF'],
       ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
       ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
     ]

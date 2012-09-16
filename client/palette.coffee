@@ -50,7 +50,10 @@ Template.square.events 'click' : (event) ->
       Squares.update origin._id, {$set: {occupant: null}}
       Squares.update @._id, {$set: {occupant: piece_to_move}}
       update_colors origin, @
+    # Clear selection...
     $('#' + origin._id).removeClass('selected')
+    $('#board-overlay').fadeOut('fast')
+    $('.square').css('z-index', 1)
     Session.set 'selected_square', null
 
 Template.games.games = ->

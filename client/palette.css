@@ -89,4 +89,5 @@ body {
  * Our Navbar uses the classes provided by Twitter Bootstrap, but there are a
  * few things that we want to customize for our own aesthetic.
  */
-.navbar .brand { font-size: 140%; }
+.navbar .brand { font-size: 140%; margin: 0; }
+.navbar .nav { margin: 10px 0px; }

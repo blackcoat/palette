@@ -63,8 +63,6 @@ UI =
     # Determine how our colors will be combined.
     mode = if piece.owner is 'white' then 'additive' else 'subtractive'
     
-    # Our `for` loop doesn't run diagonally... yet. For now, just run
-    # the color-updating code when moving rooks.
     for r in [origin.row..destination.row]
       for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
         if piece.type is 'rook' or (piece.type is 'bishop' and Math.abs(origin.row - r) is Math.abs(origin.col - c))

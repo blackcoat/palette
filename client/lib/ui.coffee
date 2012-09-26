@@ -11,6 +11,10 @@ UI =
     $('.square').removeClass('destination')
     Session.set 'selected_square', null
   
+  select: (square) ->
+    Session.set 'selected_square', square
+    $('#' + square._id).addClass('selected')
+  
   show_destinations: (origin) ->
     # Keep a list of which directions we go in away from the origin
     # Each direction has a vector that we will scale to track

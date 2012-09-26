@@ -43,8 +43,7 @@ Template.square.occupant = ->
 Template.square.events 'click' : (event) ->
   if not (Session.get 'selected_square')?
     if @.occupant?
-      Session.set 'selected_square', @
-      $('#' + @._id).addClass('selected')
+      UI.select @
       UI.show_destinations @
   else
     origin = Session.get 'selected_square'

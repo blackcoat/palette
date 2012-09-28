@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mocha tests/*.coffee --require should --compilers coffee:coffee-script --ui bdd

@@ -27,6 +27,8 @@ Ideas Under Consideration
 	- Limited-range Queen
 	- Knights
 * Choosing from a variety of chess pieces (would lead to asymmetric play)
+* The player changes color mixing modes (i.e. additive vs. subtractive) when moving over a white or black square
+* "Walls" on or off ?
 
 Rejected Ideas
 --------------

@@ -2,6 +2,13 @@
 BOARD_SIZE  = 8
 BOARD_RANGE = [0..(BOARD_SIZE-1)]
 
+STARTING_COLORS = [
+  '#FF0000', '#00FF00', '#0000FF',
+  '#FFFF00', '#FF00FF', '#00FFFF',
+  '#7FFF00', '#007FFF', '#FF007F',
+  '#FF7F00', '#00FF7F', '#7F00FF',
+]
+
 Meteor.methods
   # For testing purposes, automatically starts
   # a new game and initializes the board
@@ -13,26 +20,40 @@ Meteor.methods
     Meteor.call 'init_pieces', game_id
     game_id
   
+  # Generates the colors to be applied to an N x N board when 
+  # initializing a new game. The color arrangement should exhibit
+  # rotational symmetry, and includes white/black squares where
+  # each player's pieces will be set up.
+  #
+  # Since we desire a symmetric color arrangement should, we need 
+  # to generate *all* colors for the board in a single step instead 
+  # of applying colors randomly as each Square is created.
   randomize_colors: (seed) ->
-    # for now, just return a fixed patten of colors until
-    # we implement a color-randomization algorithm
-    available_colors = [
-      '#FF0000', '#00FF00', '#0000FF',
-      '#FFFF00', '#FF00FF', '#00FFFF',
-      '#7FFF00', '#007FFF', '#FF007F',
-      '#FF7F00', '#00FF7F', '#7F00FF',
-    ]
+    # Init the N x N map where our colors will be saved
+    square_colors = new Array BOARD_SIZE
+    for i in BOARD_RANGE
+      square_colors[i] = new Array BOARD_SIZE
     
+    # Paint our starting squares near the center of the board
+    square_colors[BOARD_SIZE/2][BOARD_SIZE/2] = '#FFFFFF'
+    square_colors[BOARD_SIZE/2 - 1][BOARD_SIZE/2 - 1] = '#FFFFFF'
+    square_colors[BOARD_SIZE/2 - 1][BOARD_SIZE/2] = '#000000'
+    square_colors[BOARD_SIZE/2][BOARD_SIZE/2 - 1] = '#000000'
     
-    [ ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
-      ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
-      ['#00FFFF','#FF00FF','#7F00FF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#7F00FF'],
-      ['#00FF7F','#00FF7F','#0000FF','#FFFFFF','#000000','#007FFF','#007FFF','#00FFFF'],
-      ['#00FFFF','#007FFF','#007FFF','#000000','#FFFFFF','#0000FF','#00FF7F','#00FF7F'],
-      ['#7FFF00','#FF00FF','#00FFFF','#0000FF','#00FFFF','#7F00FF','#FF00FF','#00FFFF'],
-      ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
-      ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
-    ]
+    # Place our colors symmetrically about the board
+    # Remember that we only have to loop through half of the squares
+    # on the board, while placing the same color at the corresponding
+    # opposite location.
+    #
+    # Since we already filled in the starting squares, be sure not to
+    # paint over anything that already has a color
+    for r in BOARD_RANGE
+      for c in [0..(BOARD_SIZE - 1 - r)]
+        unless square_colors[r][c]
+          color = STARTING_COLORS[Math.floor Math.random() * STARTING_COLORS.length]
+          square_colors[r][c] = color
+          square_colors[BOARD_SIZE - 1 - r][BOARD_SIZE - 1 - c] = color
+    square_colors
   
   init_pieces: (game_id) ->
     p1_rook = new Piece 'rook', 'white'

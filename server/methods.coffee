@@ -1,5 +1,6 @@
 # Set up an N x N board
-BOARD_SIZE = 8
+BOARD_SIZE  = 8
+BOARD_RANGE = [0..(BOARD_SIZE-1)]
 
 Meteor.methods
   # For testing purposes, automatically starts
@@ -7,15 +8,22 @@ Meteor.methods
   init_game: ->
     console.log '[server] Meteor.methods#init_game'
     game_id = Games.insert name:'Test game'
-    size = [0..(BOARD_SIZE-1)]
     colors = Meteor.call 'randomize_colors'
-    Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size
+    Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in BOARD_RANGE for r in BOARD_RANGE
     Meteor.call 'init_pieces', game_id
     game_id
   
   randomize_colors: (seed) ->
     # for now, just return a fixed patten of colors until
     # we implement a color-randomization algorithm
+    available_colors = [
+      '#FF0000', '#00FF00', '#0000FF',
+      '#FFFF00', '#FF00FF', '#00FFFF',
+      '#7FFF00', '#007FFF', '#FF007F',
+      '#FF7F00', '#00FF7F', '#7F00FF',
+    ]
+    
+    
     [ ['#00FFFF','#FF00FF','#FFFF00','#00FF00','#00FF00','#FFFF00','#FF00FF','#00FFFF'],
       ['#FF00FF','#FF0000','#FF00FF','#FFFF00','#FFFF00','#FF00FF','#FF0000','#FF00FF'],
       ['#00FFFF','#FF00FF','#7F00FF','#00FFFF','#0000FF','#00FFFF','#FF00FF','#7F00FF'],

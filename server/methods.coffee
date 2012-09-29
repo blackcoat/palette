@@ -1,10 +1,13 @@
+# Set up an N x N board
+BOARD_SIZE = 8
+
 Meteor.methods
   # For testing purposes, automatically starts
   # a new game and initializes the board
   init_game: ->
     console.log '[server] Meteor.methods#init_game'
     game_id = Games.insert name:'Test game'
-    size = [0..7]
+    size = [0..(BOARD_SIZE-1)]
     colors = Meteor.call 'randomize_colors'
     Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in size for r in size
     Meteor.call 'init_pieces', game_id

@@ -3,7 +3,7 @@
 
 class Game
   constructor: (params={}) ->
-    @squares = ({} for c in BOARD_RANGE for r in BOARD_RANGE)
+    @squares = ({} for c in Board.range for r in Board.range)
     @players = params.players or []
   
   start: ->

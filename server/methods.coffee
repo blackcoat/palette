@@ -1,14 +1,3 @@
-# Set up an N x N board
-BOARD_SIZE  = 8
-BOARD_RANGE = [0..(BOARD_SIZE-1)]
-
-STARTING_COLORS = [
-  '#FF0000', '#00FF00', '#0000FF',
-  '#FFFF00', '#FF00FF', '#00FFFF',
-  '#7FFF00', '#007FFF', '#FF007F',
-  '#FF7F00', '#00FF7F', '#7F00FF',
-]
-
 Meteor.methods
   # For testing purposes, automatically starts
   # a new game and initializes the board
@@ -16,7 +5,7 @@ Meteor.methods
     console.log '[server] Meteor.methods#init_game'
     game_id = Games.insert name:'Test game'
     colors = Meteor.call 'randomize_colors'
-    Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in BOARD_RANGE for r in BOARD_RANGE
+    Squares.insert new Square {color:colors[r][c], row:r, col:c, game_id:game_id} for c in Board.range for r in Board.range
     Meteor.call 'init_pieces', game_id
     game_id
   
@@ -30,15 +19,15 @@ Meteor.methods
   # of applying colors randomly as each Square is created.
   randomize_colors: (seed) ->
     # Init the N x N map where our colors will be saved
-    square_colors = new Array BOARD_SIZE
-    for i in BOARD_RANGE
-      square_colors[i] = new Array BOARD_SIZE
+    square_colors = new Array Board.size
+    for i in Board.range
+      square_colors[i] = new Array Board.size
     
     # Paint our starting squares near the center of the board
-    square_colors[BOARD_SIZE/2][BOARD_SIZE/2] = '#FFFFFF'
-    square_colors[BOARD_SIZE/2 - 1][BOARD_SIZE/2 - 1] = '#FFFFFF'
-    square_colors[BOARD_SIZE/2 - 1][BOARD_SIZE/2] = '#000000'
-    square_colors[BOARD_SIZE/2][BOARD_SIZE/2 - 1] = '#000000'
+    square_colors[Board.size/2][Board.size/2] = '#FFFFFF'
+    square_colors[Board.size/2 - 1][Board.size/2 - 1] = '#FFFFFF'
+    square_colors[Board.size/2 - 1][Board.size/2] = '#000000'
+    square_colors[Board.size/2][Board.size/2 - 1] = '#000000'
     
     # Place our colors symmetrically about the board
     # Remember that we only have to loop through half of the squares
@@ -47,12 +36,12 @@ Meteor.methods
     #
     # Since we already filled in the starting squares, be sure not to
     # paint over anything that already has a color
-    for r in BOARD_RANGE
-      for c in [0..(BOARD_SIZE - 1 - r)]
+    for r in Board.range
+      for c in [0..(Board.size - 1 - r)]
         unless square_colors[r][c]
-          color = STARTING_COLORS[Math.floor Math.random() * STARTING_COLORS.length]
+          color = Board.colors[Math.floor Math.random() * Board.colors.length]
           square_colors[r][c] = color
-          square_colors[BOARD_SIZE - 1 - r][BOARD_SIZE - 1 - c] = color
+          square_colors[Board.size - 1 - r][Board.size - 1 - c] = color
     square_colors
   
   init_pieces: (game_id) ->

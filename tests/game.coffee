@@ -11,7 +11,7 @@ describe 'Game', ->
     context 'fewer than 2 players', ->
       it 'will not start the Game', ->
         game = new Game
-        game.start.should.be.false
+        game.start().should.be.false
         
     context 'exactly 2 players', ->
       it 'marks the game as "in progress"'

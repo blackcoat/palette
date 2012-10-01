@@ -1,5 +1,5 @@
 ##
-# Spec-style unit tests for Pieces moved by Players in Palette
+# Spec-style unit tests for the Game state in Palette
 
 # Need to use Coffeescript's destructuring to reference
 # the object bound in the returned scope

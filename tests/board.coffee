@@ -10,3 +10,14 @@ describe 'Board', ->
   it 'is a class', ->
     Board.should.be.a 'function'
   
+  describe '#generate', ->
+    it 'returns an N x N board', ->
+      board = Board.generate()
+      board.should.be.an.instanceOf(Array).and.have.length(Board.size)
+      for row in board
+        row.should.be.an.instanceOf(Array).and.have.length(Board.size)
+    it 'creates a specific board given a particular seed, e.g. 123', ->
+      first_board = Board.generate seed: 123
+      second_board = Board.generate seed: 123
+      first_board.should.eql second_board
+    it 'creates a board with rotational symmetry'

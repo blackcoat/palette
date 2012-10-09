@@ -12,7 +12,7 @@ UI =
     Session.set 'selected_square', null
   
   select: (square) ->
-    Session.set 'selected_square', square
+    Session.set 'selected_square', JSON.stringify square
     $('#' + square._id).addClass('selected')
   
   show_destinations: (origin) ->

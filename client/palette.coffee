@@ -46,7 +46,7 @@ Template.square.events 'click' : (event) ->
       UI.select @
       UI.show_destinations @
   else
-    origin = Session.get 'selected_square'
+    origin = JSON.parse( Session.get 'selected_square' )
     if not @.occupant?
       piece_to_move = origin.occupant
       Squares.update origin._id, {$set: {occupant: null}}

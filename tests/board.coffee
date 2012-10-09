@@ -26,3 +26,11 @@ describe 'Board', ->
       first_board = Board.generate seed: 1
       second_board = Board.generate seed: 2
       first_board.should.not.eql second_board
+  
+  describe '#_colors', ->
+    it 'returns a list of colors', ->
+      Board._colors().should.be.an.instanceOf(Array)
+      
+    it 'returns as many colors as the size of the board (e.g. 8)', ->
+      Board._colors().should.have.length(Board.size)
+      

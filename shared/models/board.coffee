@@ -60,6 +60,10 @@ class Board
             square_colors[r][c] = color
             square_colors[Board.size - 1 - r][Board.size - 1 - c] = color
       square_colors
+    
+    # Generates a subset of available colors for use on a Palette board
+    @_colors = ->
+      @colors[0...@size]
 
 # Export our class to Node.js when running
 # other modules, e.g. our Mocha tests

@@ -16,8 +16,13 @@ describe 'Board', ->
       board.should.be.an.instanceOf(Array).and.have.length(Board.size)
       for row in board
         row.should.be.an.instanceOf(Array).and.have.length(Board.size)
+        
     it 'creates a specific board given a particular seed, e.g. 123', ->
       first_board = Board.generate seed: 123
       second_board = Board.generate seed: 123
       first_board.should.eql second_board
-    it 'creates a board with rotational symmetry'
+    
+    it 'creates different boards for different seeds', ->
+      first_board = Board.generate seed: 1
+      second_board = Board.generate seed: 2
+      first_board.should.not.eql second_board

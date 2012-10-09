@@ -5,7 +5,7 @@ class Board
   constructor: ->
   
   @size = 8
-  @range = [0..(@size - 1)]
+  @range = [0...@size]
   @colors = [
     '#FF0000', '#00FF00', '#0000FF',
     '#FFFF00', '#FF00FF', '#00FFFF',

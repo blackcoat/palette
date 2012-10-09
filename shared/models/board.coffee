@@ -53,10 +53,11 @@ class Board
       #
       # Since we already filled in the starting squares, be sure not to
       # paint over anything that already has a color
+      colors = @_colors()
       for r in Board.range
         for c in [0..(Board.size - 1 - r)]
           unless square_colors[r][c]
-            color = Board.colors[Math.floor Math.random() * Board.colors.length]
+            color = colors[Math.floor Math.random() * colors.length]
             square_colors[r][c] = color
             square_colors[Board.size - 1 - r][Board.size - 1 - c] = color
       square_colors

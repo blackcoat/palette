@@ -45,19 +45,32 @@ class Board
       square_colors[Board.size/2 - 1][Board.size/2 - 1] = '#FFFFFF'
       square_colors[Board.size/2 - 1][Board.size/2] = '#000000'
       square_colors[Board.size/2][Board.size/2 - 1] = '#000000'
-    
+      
+      # Distribute our colors (almost) evenly. We don't want this to
+      # be completely random, because we could end up with an all red
+      # board!
+      # To spread our colors out a bit, we need to count how many times
+      # we use a particular color, and stop using that color if we
+      # exceed a certain threshold.
+      colors = @_colors()
+      color_count = {}
+      color_count[color] = 0 for color in colors
+      
       # Place our colors symmetrically about the board
       # Remember that we only have to loop through half of the squares
       # on the board, while placing the same color at the corresponding
       # opposite location.
       #
       # Since we already filled in the starting squares, be sure not to
-      # paint over anything that already has a color
-      colors = @_colors()
+      # paint over anything that already has a color      
       for r in Board.range
         for c in [0...(@size - r)]
           unless square_colors[r][c]
-            color = colors[Math.floor Math.random() * colors.length]
+            index = Math.floor Math.random() * colors.length
+            color = colors[index]
+            color_count[color] += 1
+            colors[index..index] = [] if color_count[color] >= @size / 2
+            
             square_colors[r][c] = color
             square_colors[Board.size - 1 - r][Board.size - 1 - c] = color
       square_colors

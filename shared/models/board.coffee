@@ -55,7 +55,7 @@ class Board
       # paint over anything that already has a color
       colors = @_colors()
       for r in Board.range
-        for c in [0..(Board.size - 1 - r)]
+        for c in [0...(@size - r)]
           unless square_colors[r][c]
             color = colors[Math.floor Math.random() * colors.length]
             square_colors[r][c] = color

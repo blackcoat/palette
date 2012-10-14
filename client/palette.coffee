@@ -54,12 +54,18 @@ Template.square.events 'click' : (event) ->
       UI.update_colors origin, @
     UI.clear_selection()
 
+##
+# Players may be engaged in multiple games, and need the
+# ability to switch from one game to another.
 Template.games.games = ->
   games = Games.find()
 
 Template.games.events 'click #clear-all-games' : (event) ->
     Games.remove {}
     Squares.remove {}
+
+Template.games.events 'click .game' : (event) ->
+  Session.set 'game_id', @._id
 
 
 # While prototyping, start up a new *local* game 

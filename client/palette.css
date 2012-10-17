@@ -66,8 +66,9 @@ body {
   z-index: 1;
 }
 
-.square:hover {
   outline: 5px solid rgba(150,150,150,.83);
+.square:hover,
+.square.destination:hover {
   z-index: 100;
 }
 

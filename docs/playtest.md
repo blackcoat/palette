@@ -17,11 +17,13 @@ In 'first-playable' build...
 * When **walls** are in effect, the game becomes a Go-style territory-capturing game.
 * **Without walls**, players use the freedom of movement to actively deny opportunities to other players.
 * Players are **not thinking about color math**. Instead, they are resorting to pattern recognition (maybe this is ok??)
+* **Needs a tutorial**, preferably an interactive, playable tutorial
 
 
 Ideas Under Consideration
 -------------------------
 * Bigger board
+* Choose the size of the playing board
 * Other pieces
 	- King that changes nearby colors
 	- Limited-range Queen
@@ -29,6 +31,9 @@ Ideas Under Consideration
 * Choosing from a variety of chess pieces (would lead to asymmetric play)
 * The player changes color mixing modes (i.e. additive vs. subtractive) when moving over a white or black square
 * "Walls" on or off ?
+* Use a meaningful (or neutral?) color for the "selected" square's border
+
+
 
 Rejected Ideas
 --------------

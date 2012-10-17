@@ -60,15 +60,12 @@ UI =
     player_colors = ['white', 'black']
     painting_color = origin.color unless $.xcolor.nearestname(origin.color) in player_colors
     
-    # Determine how our colors will be combined.
-    mode = if piece.owner is 'white' then 'additive' else 'subtractive'
-    
     for r in [origin.row..destination.row]
       for c in [origin.col..destination.col] when r isnt origin.row or c isnt origin.col # don't paint our origin
         if piece.type is 'rook' or (piece.type is 'bishop' and Math.abs(origin.row - r) is Math.abs(origin.col - c))
           square = Squares.findOne {row: r, col: c, game_id: origin.game_id}
           if painting_color? and $.xcolor.nearestname(square.color) not in player_colors
-            square.color = $.xcolor[mode](square.color, painting_color).toString()
+            square.color = $.xcolor[piece.mode](square.color, painting_color).toString()
             Squares.update square._id, {$set: {color: square.color}}
           else
             # Pick up a new painting color if we don't have one already,

@@ -23,6 +23,11 @@ Games = new Meteor.Collection 'games'
 Players = new Meteor.Collection 'players'
 
 Squares = new Meteor.Collection 'squares'
+Squares.allow
+  update: (userId, doc, fields, modifier) ->
+    # Until we add actual Players to the mix,
+    # let everyone update Squares
+    true
 
 ##
 # @todo add collections for:

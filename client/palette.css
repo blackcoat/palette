@@ -66,15 +66,15 @@ body {
   z-index: 1;
 }
 
-  outline: 5px solid rgba(150,150,150,.83);
 .square:hover,
 .square.destination:hover {
-  z-index: 100;
+  outline: 8px solid rgba(150, 150, 150, .9);
+  z-index: 1000;
 }
 
 .square.selected {
-  outline: 5px solid rgba(200,0,200,.83);
-  z-index: 1000;
+  outline: 8px solid rgba(50, 50, 50, .5);
+  z-index: 100;
 }
 
 .square.destination {

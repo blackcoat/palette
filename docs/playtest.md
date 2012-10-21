@@ -18,6 +18,7 @@ In 'first-playable' build...
 * **Without walls**, players use the freedom of movement to actively deny opportunities to other players.
 * Players are **not thinking about color math**. Instead, they are resorting to pattern recognition (maybe this is ok??)
 * **Needs a tutorial**, preferably an interactive, playable tutorial
+* People need to know when it's their turn to make a move
 
 
 Ideas Under Consideration

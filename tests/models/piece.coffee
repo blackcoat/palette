@@ -4,7 +4,7 @@
 # Need to use Coffeescript's destructuring to reference
 # the object bound in the returned scope
 # http://coffeescript.org/#destructuring
-{Piece} = require '../shared/models/piece'
+{Piece} = require '../../shared/models/piece'
 
 describe 'Piece', ->
   describe '#new', ->

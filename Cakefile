@@ -1,9 +1,21 @@
 # Required to run commands in the shell
-{spawn, exec} = require 'child_process'
+# @see http://nodejs.org/api/child_process.html
+{spawn} = require 'child_process'
 
-# Set up default arguments for running our Mocha tests
+# A basic command runner
+run = (cmd, args) ->
+  console.log cmd, args.join ' '
+  spawn cmd, args, stdio: 'inherit'
+
+
+# Set up default arguments for running our Mocha tests.
+# Meteor expects our specs to be located in the "tests" folder,
+# which differs from Mocha's default location (i.e. "test").
+# @see http://docs.meteor.com/#structuringyourapp
+# @see http://stackoverflow.com/questions/11785917/where-should-unit-tests-be-placed-in-meteor
 mocha_args = [
   'tests',
+  '--recursive',
   '--compilers', 'coffee:coffee-script',
   '--require', 'should',
   '--ui', 'bdd',
@@ -11,13 +23,13 @@ mocha_args = [
 ]
 
 
+# Standard test runner with complete spec-style output
 task 'test', 'runs the Mocha test suite', ->
-  args = mocha_args.concat ['--reporter', 'spec']...
-  spawn 'mocha', args, stdio: 'inherit'
+  run 'mocha', mocha_args.concat ['--reporter', 'spec']...
 
+# Our watchful test runner to use during development and refactoring
 task 'test:watch', 'runs the Mocha test suite whenever a file on the project is changed', ->
-  args = mocha_args.concat [
+  run 'mocha', mocha_args.concat [
     '--reporter', 'min',
     '--watch'
   ]...
-  spawn 'mocha', args, stdio: 'inherit'

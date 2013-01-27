@@ -12,7 +12,7 @@ describe 'Game', ->
       it 'will not start the Game', ->
         game = new Game
         game.start().should.be.false
-        
+
     context 'exactly 2 players', ->
       it 'marks the game as "in progress"'
       it 'sets up Pieces for each Player'

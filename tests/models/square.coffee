@@ -12,7 +12,7 @@ describe 'Square', ->
       s = new Square selected: false
       s.select()
       s.selected.should.be.true
-      
+
   describe '#is_active', ->
   describe '#occupied_by', ->
     it 'returns a single Piece situated in the Square'

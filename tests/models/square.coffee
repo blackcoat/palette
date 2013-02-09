@@ -4,7 +4,7 @@
 # Need to use Coffeescript's destructuring to reference
 # the object bound in the returned scope
 # http://coffeescript.org/#destructuring
-{Square} = require '../../shared/models/square'
+require '../mocha-helper.coffee'
 
 describe 'Square', ->
   describe '#select', ->
